@@ -9,31 +9,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Checkout repository
-      uses: actions/checkout@v4
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
 
-    - name: 🧱 Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      - name: 🧱 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-    - name: 🔐 Log in to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: 🔐 Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: ⏱️ Print start time
-      run: echo "Build started at: $(date)"
+      - name: ⏱️ Print start time
+        run: echo "Build started at: $(date)"
 
-    - name: 🐳 Build and push with cache (timed)
-      run: |
-        echo "Starting timed build..."
-        time docker buildx build \
-          --file Dockerfile \
-          --tag cath0806/myapp:buildx \
-          --cache-from=type=registry,ref=cath0806/myapp:buildx \
-          --cache-to=type=inline \
-          --push \
-          .
+      - name: 🐳 Build and push with cache (timed)
+        run: |
+          echo "Starting timed build..."
+          time docker buildx build \
+            --file Dockerfile \
+            --tag cath0806/myapp:buildx \
+            --cache-from=type=registry,ref=cath0806/myapp:buildx \
+            --cache-to=type=inline \
+            --push \
+            .
 
-    - name: ⏱️ Print end time
-      run: echo "Build ended at: $(date)"
+      - name: ⏱️ Print end time
+        run: echo "Build ended at: $(date)"
