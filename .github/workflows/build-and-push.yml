@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: ⏱️ Print start time
-        run: echo "Build started at: $(date)"
+        run: echo 'Build started at: $(date)'
 
       - name: 🐳 Build and push with cache (timed)
         run: |
@@ -36,4 +36,4 @@ jobs:
             .
 
       - name: ⏱️ Print end time
-        run: echo "Build ended at: $(date)"
+        run: echo 'Build ended at: $(date)'
